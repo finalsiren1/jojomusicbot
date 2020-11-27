@@ -197,6 +197,9 @@ client.on("message", async(message) => {
         if(message.member.voice.channel != message.guild.me.voice.channel)
             return message.channel.send("เข้ามาในห้องก่อนสิเว้ย !")
 
+        if(args.length <= 0)
+            return message.channel.send("เลือกรูปแบบการเล่นซ้ำ !loop <one/all/off>");
+
         switch(args[0].toLowerCase()){
             case 'all':
                 serverQueue.loopall = !serverQueue.loopall;
