@@ -127,7 +127,7 @@ client.on("message", async(message) => {
             serverQueue.txtChannel.send(`กำลังเล่น ${serverQueue.songs[0].url} อยู่นะจ๊ะ`)
     }
     function stop (message, serverQueue){
-        if(!noserverQueue)
+        if(!serverQueue)
             return message.channel.send("ไม่มีเพลงเล่นอยู่เว้ย !")
         if(message.member.voice.channel != message.guild.me.voice.channel)
             return message.channel.send("เข้ามาในห้องก่อนสิเว้ย !")
@@ -150,15 +150,15 @@ client.on("message", async(message) => {
     }
 
     function vSkip(ServerQueue){
-        if(!noserverQueue)
+        if(!serverQueue)
             return message.channel.send("ไม่มีเพลงมา skip อะไร !");
         if(message.member.voice.channel != message.guild.me.voice.channel)
             return message.channel.send("เข้ามาในห้องก่อนสิเว้ย !")
         
-        let usesC = message.member.voice.channel.members.size;
+        let usersC = message.member.voice.channel.members.size;
         let required = Math.ceil(usersC/2);
 
-        if(serverQueue.skipvote.includes(message.member.id))
+        if(serverQueue.skipVotes.includes(message.member.id))
             return message.channel.send("เอ็งได้โหวดแล้ว !")
 
         serverQueue.skipVotes.push(message.member.id)
@@ -172,7 +172,7 @@ client.on("message", async(message) => {
     }
 
     function pause(serverQueue){
-        if(!noserverQueue)
+        if(!serverQueue)
             return message.channel.send("ไม่มีเพลงเล่นอยู่มาหยุดอะไร !");
         if(message.member.voice.channel != message.guild.me.voice.channel)
             return message.channel.send("เข้ามาในห้องก่อนสิเว้ย !")
@@ -182,7 +182,7 @@ client.on("message", async(message) => {
         message.channel.send("หยุดเพลงให้แล้วนะจ๊ะ")
     }
     function resume(serverQueue){
-        if(!noserverQueue)
+        if(!serverQueue)
             return message.channel.send("ไม่มีเพลงเล่นอยู่มาให้เล่นต่ออะไร !");
         if(message.member.voice.channel != message.guild.me.voice.channel)
             return message.channel.send("เข้ามาในห้องก่อนสิเว้ย !")
@@ -192,7 +192,7 @@ client.on("message", async(message) => {
         message.channel.send("เล่นเพลงต่อให้แล้วนะจ๊ะ")
     }
     function Loop(args, serverQueue){
-        if(!noserverQueue)
+        if(!serverQueue)
             return message.channel.send("ไม่มีเพลงเล่นอยู่มาให้เล่นซ้ำอะไร !");
         if(message.member.voice.channel != message.guild.me.voice.channel)
             return message.channel.send("เข้ามาในห้องก่อนสิเว้ย !")
@@ -228,7 +228,7 @@ client.on("message", async(message) => {
         }
     }
     function Queue(serverQueue){
-        if(!noserverQueue)
+        if(!serverQueue)
             return message.channel.send("ไม่มีเพลงเล่นอยู่มาให้เล่นต่ออะไร !");
         if(message.member.voice.channel != message.guild.me.voice.channel)
             return message.channel.send("เข้ามาในห้องก่อนสิเว้ย !")
